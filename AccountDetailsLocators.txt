@@ -1,0 +1,96 @@
+WebDriver driver ;
+	
+	public AccountDetailPage(WebDriver driver)
+	{
+		
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+    
+	}
+	 // (linkText = "Account Detail")
+	
+	@FindBy(xpath="(//a[@class='t-menu__link-item'])[7]")
+	WebElement accountDetails;
+	
+	@FindBy(xpath="//select[@id='collection_comp-m8swuunx']")
+	WebElement selectName;
+	
+	@FindBy(xpath="//div[@id='menuitem-0']")
+	WebElement accountOne;
+	
+	@FindBy(xpath="//button[.='Login']")//@FindBy(xpath="//button[.='Login']")
+	WebElement clickOnLogin;
+	
+	
+	@FindBy(xpath = "//div[@id='tab-comp-m8szwsxa']")   ////div[@id='comp-m8swx4kp']
+	WebElement Depositbtn;
+	
+	@FindBy(xpath= "//input[@id='input_comp-m8t00o79']")
+	WebElement depositAmount;
+	
+	@FindBy(xpath = "//button[@aria-label='Deposit']")
+	WebElement depositeoption;
+	public void  accountDetails()
+
+	{
+		accountDetails.click();  
+		Set<String> s1 = driver.getWindowHandles();
+		System.out.println(s1);
+		
+		Iterator<String> i1 = s1.iterator();
+		
+		String ParentId = i1.next();
+		String ChildId = i1.next();
+		
+		driver.switchTo().window(ChildId);
+		
+		
+		
+	}
+	
+	public void selectName() throws AWTException, InterruptedException
+	{
+	     //Select oselect = new Select(AccountDetails);
+	     //oselect.selectByIndex(i);
+		
+	/*	Robot sw = new Robot();
+		sw.keyPress(KeyEvent.VK_DOWN);
+		sw.keyPress(KeyEvent.VK_ENTER);
+		selectName.click();
+		sw.keyPress(KeyEvent.VK_DOWN);
+		sw.keyPress(KeyEvent.VK_DOWN);
+		sw.keyPress(KeyEvent.VK_ENTER); */
+		
+		addHardcodedWait();
+		selectName.click();
+		addExplicitWait(By.xpath("//div[@id='menuitem-0']"));
+		accountOne.click();
+		
+	     
+	     
+	}
+	
+	public void clickOnLogin()
+	{
+		clickOnLogin.click();
+	}
+	
+	public void clickOnDepositBtn()
+	{
+		Depositbtn.click();
+	}
+	
+	public void enterDepositeAmount(String amount)
+	{
+	    depositAmount.sendKeys(amount);
+	}
+	public void clickOnDepositeOption()
+	{
+	   depositeoption.click();
+	}
+	
+	
+	
+	
+	
+}
